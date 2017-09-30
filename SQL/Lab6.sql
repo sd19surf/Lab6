@@ -169,3 +169,10 @@ INSERT into FacultyCourses
 VALUES ('25', '1', '1');
 
 
+--Update the Courses Table from 3 to 4
+
+UPDATE Courses SET NumberOfCredits = 4 WHERE CourseID IS NOT NULL;
+
+--Update the Faculty Courses Count to anything equal or greater than 4 to 5
+
+UPDATE Faculty SET NumberOfCourses = 5 WHERE NumberOfCourses > 4;

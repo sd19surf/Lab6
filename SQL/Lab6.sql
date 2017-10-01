@@ -1,4 +1,11 @@
---SQL Statements:
+
+
+-- Name: John Delaney
+-- Class Number: SDEV 300 6381 Building Secure Web Applications (2178)
+-- Section: Lab 6
+-- Date: 10/1/2017
+
+-- SQL Statements:
 
 use sdev; 
 
@@ -6,7 +13,7 @@ DROP TABLE Faculty;
 DROP TABLE Courses;
 DROP TABLE FacultyCourses;
 
---1. Create Table named Faculty
+-- 1. Create Table named Faculty
 
 CREATE TABLE Faculty (
 FacultyID int primary key,
@@ -19,7 +26,7 @@ NumberOfCourses int
 
 
 
---2. Create a Table named Courses
+-- 2. Create a Table named Courses
 
 CREATE TABLE Courses (
 CourseID int primary key,
@@ -169,10 +176,38 @@ INSERT into FacultyCourses
 VALUES ('25', '1', '1');
 
 
---Update the Courses Table from 3 to 4
+-- Update the Courses Table from 3 to 4
 
 UPDATE Courses SET NumberOfCredits = 4 WHERE CourseID IS NOT NULL;
 
---Update the Faculty Courses Count to anything equal or greater than 4 to 5
+-- Update the Faculty Courses Count to anything equal or greater than 4 to 5
 
 UPDATE Faculty SET NumberOfCourses = 5 WHERE NumberOfCourses > 4;
+
+-- Delete the Faculty members whose last name starts with 'Z'
+
+DELETE FROM Faculty WHERE SUBSTR(LastName,1,1) = 'Z';
+
+-- Delete the Courses offered on year 1999
+
+DELETE FROM Courses WHERE YearOffered = 1999;
+
+-- Select Statements to show all records
+
+SELECT * FROM Faculty ORDER BY LastName ASC;
+
+SELECT * FROM Courses ORDER BY CourseTitle ASC;
+
+SELECT * FROM FacultyCourses ORDER BY FacultyID ASC;
+
+-- Select all Faculty who have not taught any courses.
+
+SELECT FirstName, LastName FROM Faculty WHERE NumberOfCourses = 0 ORDER BY LastName ASC;
+
+SELECT * FROM Courses WHERE YearOffered < 1984 ORDER BY CourseTitle ASC;
+
+-- Select and Join tables to create more detail on FacultyCourses
+
+SELECT * from FacultyCourses A, Courses B, Faculty C where A.CourseID = B.CourseID and A.FacultyID = B.FacultyID;
+
+
